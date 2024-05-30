@@ -1,35 +1,22 @@
-function rotateMatrix(matrix) {
+function rotateMatrix (matrix) {
     const n = matrix.length;
+    const m = matrix[0].length;
 
-    // Transpose the matrix
+    let rotatedMatrix = new Array(m).fill(0).map(() => new Array(n).fill(0));
+
     for (let i = 0; i < n; i++) {
-        for (let j = i; j < n; j++) {
-            // Swap matrix[i][j] and matrix[j][i]
-            const temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
+        for (let j = 0; j < m; j++) {
+            rotatedMatrix[j][n - 1 - i] = matrix[i][j];
         }
     }
-
-    // Reverse each row
-    for (let i = 0; i < n; i++) {
-        matrix[i].reverse();
-    }
-
-    return matrix;
+    return rotatedMatrix;
 }
 
-const matrix = [
+let matrix = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
 ];
 
-console.log(rotateMatrix(matrix));
-
-  // Output:
-  //[
-  //  [7, 4, 1],
-  //  [8, 5, 2],
-   // [9, 6, 3]
-  //]
+let rotated = rotateMatrix(matrix);
+console.log(rotated);
